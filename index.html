@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Style sheet -->
+    <link rel="stylesheet" href="style.css">
+    <!-- external font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap" rel="stylesheet">
+    
+    <title>Caesar Cipher</title>
+</head>
+<body>
+
+    <section class="main_container">
+
+        <header>
+            <h2>Caesar Cipher</h2>
+        </header>
+
+        <main>
+
+            <section class="encrypt_container">
+                <div class="encrypt_inputs">
+                    <input type="text" id="encrypt_text">
+                    <input type="number" id="encrypt_key">
+                    <button type="button" id="encrypt_btn">Encript</button>
+                </div>
+                
+                <div class="result">
+                    <h4>Result: &nbsp; <span id="encrypt_result"></span> </h4>
+                </div>
+
+            </section>
+
+            <section class="decrypt_container">
+                <div>
+                    <input type="text" id="decrypt_text">
+                    <input type="number" id="decrypt_key">
+                    <button type="button" id="decrypt_btn">Decript</button>
+                </div>
+                
+                <div class="result">
+                    <h4>Result: <span id="encrypt_result"></span> </h4>
+                </div>
+
+            </section>
+
+        </main>
+    </section>
+<script src="script.js"></script>
+</body>
+</html>
