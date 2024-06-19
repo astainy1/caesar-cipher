@@ -1,0 +1,113 @@
+
+.permanent-marker-regular {
+    font-family: "Permanent Marker", cursive;
+    font-weight: 400;
+    font-style: normal;
+  }
+  
+
+*::before, *::after{
+    box-sizing: border-box;
+}
+
+:root{
+    --background: orange;
+    --box-shadow: 0.3em 0.2em 0.6em 0.4em rgba(0, 0, 0, .1);
+}
+
+body{
+    padding: 0;
+    margin: 0;
+    font-size: 1rem;
+    font-family: "Permanent Marker", cursive, 'open sans', sans-serif;
+    background: #dede;
+}
+
+.main_container{
+    width: 50%;
+    min-width: 400px;
+    min-height: 400px;
+    margin: 20px auto;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    border: 2px solid var(--background);
+    border-radius: 10px;
+    box-shadow: var(--box-shadow);
+
+}
+
+main{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 10px;
+}
+
+h2{
+    font-size: 1.8rem;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+h4{
+    font-size: 1.3rem;
+    text-transform: uppercase;
+    font-weight: bolder;
+    color: #5b5959;
+}
+
+#encrypt_result, #decrypt_result{
+    text-transform: none;
+}
+
+.encrypt_container, .decrypt_container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border: 2px solid var(--background);
+    border-radius: 5px;
+    /* margin: 20px; */
+    padding: 30px;
+}
+
+input{
+    width: 200px;
+    padding: 10px 5px;
+    border: 1px solid gray;
+    border-radius: 5px;
+    font-size: 1.5rem;
+    color: gray;
+    outline: none;
+    transition: all .4s;
+}
+
+input:focus{
+    box-shadow: 0.3em 0.2em 0.6em 0.4em rgba(25, 0, 255, 0.107);
+}
+
+button{
+    border: none;
+    background: var(--background);
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-size: 1.4rem;
+    /* margin-top: 15px; */
+    transition: all .6s;
+    
+}
+
+button:hover{
+    background: none;
+    border: 2px solid var(--background);
+    cursor: pointer;
+}
+.result{
+    align-self: flex-start;
+};
+
