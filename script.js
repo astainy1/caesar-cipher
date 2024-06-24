@@ -1,68 +1,6 @@
 //Testing connection
 // alert('Connected successfully!');
 
-/*
-
-Caesar Cipher Algorithm Steps
-
-Input the Plaintext and Shift Value:
-
-Get the plaintext (message to be encrypted).
-Get the shift value (number of positions to shift each letter).
-Initialize an Empty Ciphertext String:
-
-Create an empty string to hold the resulting ciphertext.
-Iterate Through Each Character of the Plaintext:
-
-Loop through each character in the plaintext.
-Check if the Character is a Letter:
-
-If the character is an uppercase letter:
-Convert the character to its ASCII value.
-Shift the character by the given shift value.
-Wrap around if necessary (using modulo 26).
-Convert the new ASCII value back to a character.
-Append the shifted character to the ciphertext.
-Else if the character is a lowercase letter:
-Convert the character to its ASCII value.
-Shift the character by the given shift value.
-Wrap around if necessary (using modulo 26).
-Convert the new ASCII value back to a character.
-Append the shifted character to the ciphertext.
-Else (if the character is not a letter):
-Append the character to the ciphertext without changing it.
-Output the Ciphertext:
-
-Return or display the resulting ciphertext.
-Example of Steps
-Input:
-
-Plaintext: "HELLO WORLD"
-Shift value: 3
-Initialize:
-
-Ciphertext: ""
-Iterate:
-
-For each character in "HELLO WORLD":
-H -> K
-E -> H
-L -> O
-L -> O
-O -> R
-(space) -> (space)
-W -> Z
-O -> R
-R -> U
-L -> O
-D -> G
-
-Output:
-
-Ciphertext: "KHOOR ZRUOG"
-
-*/
-
 //get reference to html elements
     //encryption container element
 let encryptText = document.getElementById('encrypt_text');
@@ -75,11 +13,104 @@ let decryptTextKey = document.getElementById('decrypt_key');
 let decryptBtn = document.getElementById('decrypt_btn');
 let decryptResult = document.getElementById('decrypt_result');
 
-//Global string
-let emptyString = '';
+//Message
+let errorMessage = document.getElementById('error_message');
 
-//encryption toggle button
-encryptBtn.addEventListener('click', () => {
-    console.log(encryptText.value);
-    encryptResult.textContent = encryptText.value;
-})
+//function to handle encryption
+function encrypt(text, key) {
+    return text.split('').map(char => {
+        if (char.match(/[a-z]/i)) {
+            let charcode = char.charCodeAt(0);
+            let baseChar = (char.toUpperCase() === char) ? 65 : 97;
+            return String.fromCharCode(((charcode - baseChar + key) % 26) + baseChar);
+        }
+        return char;
+    }).join('');
+}
+
+//function to handle the decryption
+function decrypt(text, key) {
+    return text.split('').map(char => {
+
+        //Check for match in the alphabet
+        if (char.match(/[a-z]/i)) {
+            let charcode = char.charCodeAt(0);
+            let baseChar = (char.toUpperCase() === char) ? 65 : 97;
+            return String.fromCharCode(((charcode - baseChar - key + 26) % 26) + baseChar);
+        }
+        return char;
+
+    }).join('');
+}
+
+//Function to display encryption result
+function encryptPlainText(){
+    const text = encryptText.value;
+    const key = parseInt(encryptTextKey.value);
+
+    //Check if key value is less than or greater than or key is empty
+
+    if (key < 1 || key > 25) {
+        showErrorMessage1()
+        setInterval(removeErrorMessage, 2000);
+        
+        return;
+    }
+
+    //Check if text input is empty
+    if(text === ''){
+
+        encryptResult.style.color = 'red';
+        encryptResult.innerHTML = 'Invalid text input!';
+        return;
+    }
+    encryptResult.innerHTML = encrypt(text, key);
+};
+
+
+//Function to display decryption result
+function decryptPlainText() {
+    const text = decryptText.value;
+    const key = parseInt(decryptTextKey.value);
+
+     //Check if key value is less than or greater than or key is empty
+    if (key < 1 || key > 25) {
+
+        showErrorMessage1()
+        setInterval(removeErrorMessage, 2000);
+
+        return;
+    }
+
+    //Check if text input is empty
+    if(text === ''){
+
+        decryptResult.style.color = 'red';
+        decryptResult.innerHTML = 'Invalid text input!';
+        return;
+    }
+
+    decryptResult.innerHTML = decrypt(text, key);
+};
+
+//Function to display error message
+function showErrorMessage1(){
+    errorMessage.innerHTML = "Key must be between 1 and 25";
+    errorMessage.classList.add('remove_error');
+    
+}
+
+function showErrorMessage2(){
+    errorMessage.innerHTML = "The is no key!";
+    errorMessage.classList.add('remove_error');
+    
+}
+function removeErrorMessage(){
+    // errorMessage.innerHTML = "Key must be between 1 and 25";
+    errorMessage.classList.remove('remove_error');
+    
+}
+
+//Toggle both function on either of the button when click
+encryptBtn.addEventListener('click', encryptPlainText);
+decryptBtn.addEventListener('click', decryptPlainText);     
